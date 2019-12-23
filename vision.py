@@ -158,7 +158,7 @@ def detect_square_type(image):
 
     # Convert the image to black & white
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, image = cv2.threshold(image, 120, 255, cv2.THRESH_BINARY)
+    _, image = cv2.threshold(image, 125, 255, cv2.THRESH_BINARY)
 
     # Algorithm:
     # First, check if the square is empty.

@@ -16,7 +16,7 @@ class Arm:
     # Put the arm back to waiting position.
     def reset(self):
         (x, y, z, r, j1, j2, j3, j4) = self.device.pose()
-        self.device.move_to(x, y, z + 10, r, wait=True)
+        # self.device.move_to(x, y, z + 10, r, wait=True)
         self.device.move_to(self.x0, self.y0, self.z0 + 130, 0, wait=True)
 
     # Set current pose as reference pose.
@@ -27,12 +27,14 @@ class Arm:
         self.z0 = z
 
     # Execute a move according to the move and the board info.
+    # The board should be in a state that **has NOT pushed the move**.
     def act(self, board, move):
         x1 = 7 - (move.from_square // 8)
         y1 = move.from_square % 8
         x2 = 7 - (move.to_square // 8)
         y2 = move.to_square % 8
 
+        print(board)
         print("act:", x1, y1, x2, y2)
 
         if board.is_capture(move):
@@ -55,7 +57,7 @@ class Arm:
         dy = 20
         dz = 15
         dz2 = -5
-        self.device.move_to(self.x0, self.y0, self.z0 + 20, 0, wait=True)
+        self.device.move_to(self.x0, self.y0, self.z0 + dz, 0, wait=True)
         self.device.move_to(
             self.x0 + (x1 - 3.5) * dx,
             self.y0 + (y1 - 3.5) * dy,

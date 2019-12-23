@@ -43,9 +43,7 @@ def main():
     # Test with an "almost" full chessboard
     board.remove_piece_at(chess.square(0, 0))
     board.remove_piece_at(chess.square(1, 7))
-    board.remove_piece_at(chess.square(1, 6))
     board.remove_piece_at(chess.square(0, 7))
-    board.remove_piece_at(chess.square(0, 6))
     current_position = get_position(board)
     cached_position = None
 
@@ -94,22 +92,22 @@ def main():
 
                 engine_move = engine.play(board, chess.engine.Limit(time=1)).move
                 print("Engine move: ", engine_move)
+                arm.act(board, engine_move)
                 board.push(engine_move)
 
-                arm.act(board, engine_move)
                 current_position = get_position(board)
 
             else:
                 cached_position = position
-                stable_counter = 10
+                stable_counter = 5
 
         except ChessboardNotFoundError:
             print("Chess board not found!")
-            stable_counter = 30
+            stable_counter = 15
         except IllegalMoveError:
             print("Illegal move!")
             print_position(cached_position)
-            stable_counter = 30
+            stable_counter = 15
 
         cv2.waitKey(1)
 
