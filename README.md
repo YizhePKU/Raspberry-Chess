@@ -107,7 +107,7 @@ OpenCV提供一个函数：findChessboardCorners()。
   4. 摄像头固定得越高越好，可以减少因为画面扭曲造成的失真。
   5. 机械臂开机后，长按Key键五秒后松开，可以重置机械臂，有利于提高定位精度。
 
-![搭建范例](images/setup.jpg)
+<img src="images/setup.png" alt="搭建范例" width="400"/>
 
 ### 视觉模块：arm.py
 `SquareType`表示一个方格的类型。
